@@ -7,26 +7,26 @@ export const registerController = async (req,res) => {
         const {name,email,password,phone,address} = req.body
         //validations
         if(!name){
-            return res.send({error:'Name is required'})
+            return res.send({message:'Name is required'})
         }
         if(!email){
-            return res.send({error:'Email is required'})
+            return res.send({message:'Email is required'})
         }
         if(!password){
-            return res.send({error:'Password is required'})
+            return res.send({message:'Password is required'})
         }
         if(!phone){
-            return res.send({error:'Phone is required'})
+            return res.send({message:'Phone is required'})
         }
         if(!address){
-            return res.send({error:'Address is required'})
+            return res.send({message:'Address is required'})
         }
         //check user
         const exsistingUser= await userModel.findOne({email})
         //exsisting user
         if (exsistingUser) {
             return res.status(200).send({
-                success:true,
+                success: false,
                 message: 'Already Register please login',
             })
         }
@@ -101,3 +101,8 @@ export const loginController = async (req,res) => {
         })
     }
 };
+
+//test controller
+export const testController = (req,res) => {
+    res.send("protected Route");
+}
