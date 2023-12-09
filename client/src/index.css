@@ -37,20 +37,20 @@
 ==========footer============= */
 
 .footer {
-  color: white;
+  color: rgb(19, 1, 1);
   padding: 25px;
   background: lightskyblue; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
-    lightskyblue,
+    rgb(106, 174, 216),
     #000000
   ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #434343, #000000);
+  background: linear-gradient(to right, #f70101, hsl(184, 100%, 50%));
 }
 
 .footer a {
   text-decoration: none;
-  color: white;
+  color: rgb(17, 1, 1);
   padding: 10px;
 }
 
@@ -97,4 +97,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+/* ========================================= */
+/* =========register page ========= */
+.register {
+  margin: 0;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
 }
