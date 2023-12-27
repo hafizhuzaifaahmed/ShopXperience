@@ -1,6 +1,8 @@
 import React,{useState} from "react";
 import Layout from "../../components/Layout/Layout";
-import {toast} from 'react-toastify';
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
+import { toast } from 'react-hot-toast';
 
 function Register() {
     const [name,setName] = useState("")
@@ -8,17 +10,30 @@ function Register() {
     const [password,setPassword] = useState("")
     const [phone,setPhone] = useState("")
     const [address,setAddress] = useState("")
-     
-    const handleSubmit = (e) => {e.preventDefault()
-    console.log(name,email,password,address,phone);
-    toast.success('Register successfully');
+    const navigate = useNavigate();
+    //form function
+    const handleSubmit = async(e) => {
+      e.preventDefault();
+      try {
+        // const res = await axios.post(`${process.env.REACT_APP_API}/api/v1/auth/register`,{name, email, password, phone, address });
+        const res = await axios.post('/api/v1/auth/register',{name, email, password, phone, address });
+        if (res.data.success) {
+          toast.success(res.data.message)
+          navigate("/login");
+        } else {
+          toast.error(res.data.message)
+        }
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong"); 
+      }
 };
   return (
     <Layout title="Register- Ecommerce App">
-      <div className="register">
+      <div className="form-container">
         <h1>Register page</h1>
-        <form>
-        <div className="form-group">
+        <form onSubmit={handleSubmit}>
+        <div className="mb-3">
               <input
               type="text"
               value = {name}
@@ -30,7 +45,7 @@ function Register() {
             />
           </div>
 
-          <div className="form-group">
+          <div className="mb-3">
             <input
               type="email"
               value = {email}
@@ -42,7 +57,7 @@ function Register() {
             />
           </div>
           
-          <div className="form-group">
+          <div className="mb-3">
             <input
               type="password"
               value = {password}
@@ -54,7 +69,7 @@ function Register() {
             />
           </div>
 
-          <div className="form-group">
+          <div className="mb-3">
             <input
               type="text"
               value = {phone}
@@ -66,7 +81,7 @@ function Register() {
             />
           </div>
 
-          <div className="form-group">
+          <div className="mb-3">
             <input
               type="text"
               value = {address}
@@ -82,7 +97,7 @@ function Register() {
          
           
           <button type="submit" className="btn btn-primary">
-            Submit
+            REGISTER
           </button>
         </form>
       </div>
