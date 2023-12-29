@@ -38,10 +38,10 @@ const Login = () => {
   };
   return (
     <div>
-      <Layout title="Register- Ecommerce App">
+      <Layout title="Register- ShopXperience App">
       <div className="form-container">
-        <h1>Login page</h1>
         <form onSubmit={handleSubmit}>
+        <h4 className="title">LOGIN</h4>
           <div className="mb-3">
             <input
               type="email"
@@ -64,6 +64,18 @@ const Login = () => {
               placeholder="Password"
               required
             />
+          </div>
+
+          <div className="mb-3">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                navigate("/forgot-password");
+              }}
+            >
+              Forgot Password
+            </button>
           </div>
           
           <button type="submit" className="btn btn-primary">
